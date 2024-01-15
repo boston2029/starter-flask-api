@@ -1,15 +1,15 @@
 import os
 
 from flask import Flask, jsonify, request
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from github import Github
 
 app = Flask(__name__)
+CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/get-dibs')
-@cross_origin()
 def get_dibs():
     try:
         github = Github(os.environ['GITHUB_TOKEN'])
@@ -29,7 +29,6 @@ def get_dibs():
 
 
 @app.route('/call', methods=['POST', 'OPTIONS'])
-@cross_origin()
 def deploy():
     try:
         data = request.json
