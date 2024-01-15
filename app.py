@@ -10,7 +10,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/get-dibs')
-@cross_origin(origins='*',allow_headers=['Content-Type','Authorization'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def get_dibs():
     try:
         github = Github(os.environ['GITHUB_TOKEN'])
@@ -30,7 +30,7 @@ def get_dibs():
 
 
 @app.route('/call', methods=['POST'])
-@cross_origin(origins='*',allow_headers=['Content-Type','Authorization'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def deploy():
     try:
         data = request.json
