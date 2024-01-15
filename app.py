@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 from github import Github
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/call": {"origins": "*"}})
+cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
