@@ -28,7 +28,7 @@ def get_dibs():
         return jsonify(success=False, error=str(exception))
 
 
-@app.route('/call', methods=['POST'])
+@app.route('/call', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def deploy():
     try:
