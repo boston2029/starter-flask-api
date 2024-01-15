@@ -30,6 +30,19 @@ def get_dibs():
 
 @app.route('/call', methods=['POST', 'OPTIONS'])
 def deploy():
+    if request.method == 'OPTIONS':
+        # Pre-flight request. Reply successfully:
+        resp = app.make_default_options_response()
+        headers = None
+        if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
+            headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
+
+        h = resp.headers
+        h['Access-Control-Allow-Origin'] = '*'
+        if headers is not None:
+            h['Access-Control-Allow-Headers'] = headers
+
+        return resp
     try:
         data = request.json
         if data is None:
