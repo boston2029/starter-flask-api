@@ -39,6 +39,7 @@ def deploy():
 
         h = resp.headers
         h['Access-Control-Allow-Origin'] = '*'
+        h['Access-Control-Allow-Methods'] = 'POST, OPTIONS'  # Add this line
         if headers is not None:
             h['Access-Control-Allow-Headers'] = headers
 
